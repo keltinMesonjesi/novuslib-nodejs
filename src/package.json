@@ -1,0 +1,19 @@
+{
+  "name": "novuslib-nodejs",
+  "version": "1.0.0",
+  "description": "API built with nodejs for novuslib library management system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keltinMesonjesi/novuslib-nodejs.git"
+  },
+  "author": "Keltin Mesonjesi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/keltinMesonjesi/novuslib-nodejs/issues"
+  },
+  "homepage": "https://github.com/keltinMesonjesi/novuslib-nodejs#readme"
+}

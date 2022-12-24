@@ -18,6 +18,7 @@ const appConfig = require('../config/app');
 const logging = require('../config/logging');
 const { errorConverter, errorHandler } = require('../app/Exceptions/Handler');
 const ApiError = require('../app/Utility/ApiError');
+const routes = require('../routes/index');
 
 const app = express();
 
@@ -46,15 +47,14 @@ app.use(compression());
 app.use(cors());
 app.options('*', cors());
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
-
 app.listen(appConfig.port, () => {
   if (appConfig.env !== 'production') {
     logging.logging.info(`App running on http://localhost:${appConfig.port}`);
   }
 });
+
+// v1 api routes
+app.use('/', routes);
 
 // send back a 404 error for any unknown api request
 app.use((req, res, next) => {

@@ -12,9 +12,8 @@ const config = require('./app');
 
 morgan.token('message', (req, res) => res.locals.errorMessage || '');
 
-const getIpFormat = () => (config.env === 'production' ? ':remote-addr - ' : '');
-const successResponseFormat = `${getIpFormat()}:method :url :status - :response-time ms`;
-const errorResponseFormat = `${getIpFormat()}:method :url :status - :response-time ms - message: :message`;
+const successResponseFormat = `[:date[web]] ":method :url :status - :response-time ms"`;
+const errorResponseFormat = `[:date[web]] ":method :url :status - :response-time ms" - message: :message`;
 
 const enumerateErrorFormat = winston.format((info) => {
   if (info instanceof Error) {

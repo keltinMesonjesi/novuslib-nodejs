@@ -18,7 +18,7 @@ const appConfig = require('../config/app');
 const logging = require('../config/logging');
 const { errorConverter, errorHandler } = require('../app/Exceptions/Handler');
 const ApiError = require('../app/Utility/ApiError');
-const routes = require('../routes/index');
+const routes = require('../routes');
 
 const app = express();
 
@@ -53,7 +53,7 @@ app.listen(appConfig.port, () => {
   }
 });
 
-// v1 api routes
+// routes
 app.use('/', routes);
 
 // send back a 404 error for any unknown api request

@@ -6,14 +6,18 @@
 | Here are defined the logging configurations using winston & morgan packages.
 |
 */
+const moment = require('moment');
 const winston = require('winston');
 const morgan = require('morgan');
 const config = require('./app');
 
+morgan.token('time', () => {
+  return moment().format('HH:mm:ss');
+})
 morgan.token('message', (req, res) => res.locals.errorMessage || '');
 
-const successResponseFormat = `[:date[web]] ":method :url :status - :response-time ms"`;
-const errorResponseFormat = `[:date[web]] ":method :url :status - :response-time ms" - message: :message`;
+const successResponseFormat = `:time => ":method :url :status - :response-time ms"`;
+const errorResponseFormat = `:time => ":method :url :status - :response-time ms" - message: :message`;
 
 const enumerateErrorFormat = winston.format((info) => {
   if (info instanceof Error) {

@@ -18,6 +18,8 @@
   "homepage": "https://github.com/keltinMesonjesi/novuslib-nodejs#readme",
   "dependencies": {
     "dotenv": "^16.0.3",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "http-status": "^1.5.3",
+    "winston": "^3.8.2"
   }
 }

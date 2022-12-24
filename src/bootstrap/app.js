@@ -9,7 +9,11 @@
 |
 */
 const express = require('express');
-const appConfig = require("../config/app");
+const httpStatus = require('http-status');
+const appConfig = require('../config/app');
+const logging = require('../config/logging');
+const { errorConverter, errorHandler } = require('../app/Exceptions/Handler');
+const ApiError = require('../app/Utility/ApiError');
 
 const app = express();
 
@@ -19,8 +23,19 @@ app.get('/', (req, res) => {
 
 app.listen(appConfig.port, () => {
   if (appConfig.env !== 'production') {
-    console.log(`App running on http://localhost:${appConfig.port}`);
+    logging.info(`App running on http://localhost:${appConfig.port}`);
   }
 });
+
+// send back a 404 error for any unknown api request
+app.use((req, res, next) => {
+  next(new ApiError(httpStatus.NOT_FOUND, 'Not found'));
+});
+
+// convert error to ApiError, if needed
+app.use(errorConverter);
+
+// handle error
+app.use(errorHandler);
 
 module.exports = app;

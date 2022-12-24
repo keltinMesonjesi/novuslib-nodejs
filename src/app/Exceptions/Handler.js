@@ -3,7 +3,7 @@
  */
 const httpStatus = require('http-status');
 const config = require('../../config/app');
-const logging = require('../../config/logging');
+const { logging } = require('../../config/logging');
 const ApiError = require('../Utility/ApiError');
 
 const errorConverter = (err, req, res, next) => {

@@ -9,7 +9,14 @@
 |
 */
 const winston = require('winston');
+const morgan = require('morgan');
 const config = require('./app');
+
+morgan.token('message', (req, res) => res.locals.errorMessage || '');
+
+const getIpFormat = () => (config.env === 'production' ? ':remote-addr - ' : '');
+const successResponseFormat = `${getIpFormat()}:method :url :status - :response-time ms`;
+const errorResponseFormat = `${getIpFormat()}:method :url :status - :response-time ms - message: :message`;
 
 const enumerateErrorFormat = winston.format((info) => {
   if (info instanceof Error) {
@@ -33,4 +40,18 @@ const logging = winston.createLogger({
   ],
 });
 
-module.exports = logging;
+const successHandler = morgan(successResponseFormat, {
+  skip: (req, res) => res.statusCode >= 400,
+  stream: { write: (message) => logging.info(message.trim()) },
+});
+
+const errorHandler = morgan(errorResponseFormat, {
+  skip: (req, res) => res.statusCode < 400,
+  stream: { write: (message) => logging.error(message.trim()) },
+});
+
+module.exports = {
+  logging,
+  successHandler,
+  errorHandler
+};

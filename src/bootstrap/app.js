@@ -17,7 +17,7 @@ const httpStatus = require('http-status');
 const appConfig = require('../config/app');
 const logging = require('../config/logging');
 const { errorConverter, errorHandler } = require('../app/Exceptions/Handler');
-const ApiError = require('../app/Utility/ApiError');
+const ApiException = require('../app/Exceptions/ApiException');
 const routes = require('../routes');
 
 const app = express();
@@ -58,10 +58,10 @@ app.use('/', routes);
 
 // send back a 404 error for any unknown api request
 app.use((req, res, next) => {
-  next(new ApiError(httpStatus.NOT_FOUND, 'Not found'));
+  next(new ApiException(httpStatus.NOT_FOUND, 'Not found'));
 });
 
-// convert error to ApiError, if needed
+// convert error to ApiException, if needed
 app.use(errorConverter);
 
 // handle error

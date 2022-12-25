@@ -1,6 +1,7 @@
-class ApiError extends Error {
+class ApiException extends Error {
   constructor(statusCode, message, isOperational = true, stack = '') {
-    super(message);
+    super();
+    this.message = message;
     this.statusCode = statusCode;
     this.isOperational = isOperational;
     if (stack) {
@@ -11,4 +12,4 @@ class ApiError extends Error {
   }
 }
 
-module.exports = ApiError;
+module.exports = ApiException;

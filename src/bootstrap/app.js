@@ -15,6 +15,7 @@ const compression = require('compression');
 const cors = require('cors');
 const httpStatus = require('http-status');
 const appConfig = require('../config/app');
+const { connectToDb } = require('../config/database');
 const logging = require('../config/logging');
 const { errorConverter, errorHandler } = require('../app/Exceptions/Handler');
 const ApiException = require('../app/Exceptions/ApiException');
@@ -47,12 +48,6 @@ app.use(compression());
 app.use(cors());
 app.options('*', cors());
 
-app.listen(appConfig.port, () => {
-  if (appConfig.env !== 'production') {
-    logging.logging.info(`App running on http://localhost:${appConfig.port}`);
-  }
-});
-
 // routes
 app.use('/', routes);
 
@@ -66,5 +61,11 @@ app.use(errorConverter);
 
 // handle error
 app.use(errorHandler);
+
+// start app
+app.listen(appConfig.port, async () => {
+  logging.logging.info(`App running on http://localhost:${appConfig.port}`); // log app running host info
+  await connectToDb(); // attempt DB connection
+});
 
 module.exports = app;

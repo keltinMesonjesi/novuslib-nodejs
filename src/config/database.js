@@ -18,14 +18,27 @@ dotenv.config({ path: path.join(__dirname, '../.env') });
 
 const envVars = process.env;
 
+const connectionParams = {
+  username: envVars.DB_USERNAME,
+  password: envVars.DB_PASSWORD,
+  database: envVars.DB_DATABASE,
+  host: envVars.DB_HOST,
+  port: envVars.DB_PORT,
+  dialect: envVars.DB_CONNECTION,
+  migrationStorageTableName: "sequelize_meta",
+  seederStorageTableName: "sequelize_data"
+};
+
 // New DB connection
 const dbConnection = new Sequelize(
-  envVars.DB_CONNECTION,
-  envVars.DB_USERNAME,
-  envVars.DB_PASSWORD,
+  connectionParams.database,
+  connectionParams.username,
+  connectionParams.password,
   {
-  host: envVars.DB_HOST,
-  dialect: envVars.DB_CONNECTION
+    host: connectionParams.host,
+    port: connectionParams.port,
+    dialect: connectionParams.dialect,
+    logging: envVars.APP_DEBUG === 'true' ? msg => logging.debug(msg) : false,
   }
 );
 
@@ -41,6 +54,9 @@ const connectToDb = async () => {
 }
 
 module.exports = {
+  development:{
+    ...connectionParams
+  },
   dbConnection,
   connectToDb
 };

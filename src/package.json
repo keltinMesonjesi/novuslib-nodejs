@@ -4,7 +4,16 @@
   "description": "API built with nodejs for novuslib library management system",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "make:migration": "npx sequelize-cli migration:generate",
+    "make:seed": "npx sequelize-cli seed:generate",
+    "migrate:up": "npx sequelize-cli db:migrate",
+    "migrate:undo": "npx sequelize-cli db:migrate:undo",
+    "migrate:undo:all": "npx sequelize-cli db:migrate:undo:all",
+    "seed:all": "npx sequelize-cli db:seed:all",
+    "seed:undo": "npx sequelize-cli db:seed:undo",
+    "seed:undo:all": "npx sequelize-cli db:seed:undo:all",
+    "make:model": "npx sequelize-cli model:generate"
   },
   "repository": {
     "type": "git",

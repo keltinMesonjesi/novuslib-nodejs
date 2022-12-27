@@ -10,7 +10,7 @@
 */
 const dotenv = require('dotenv');
 const path = require('path');
-const { Sequelize } = require('sequelize');
+const { Sequelize, DataTypes, Model } = require('sequelize');
 const { logging } = require('./logging');
 
 // Load env variables from .env file
@@ -58,5 +58,7 @@ module.exports = {
     ...connectionParams
   },
   dbConnection,
-  connectToDb
+  connectToDb,
+  DataTypes,
+  Model
 };

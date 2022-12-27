@@ -2,6 +2,7 @@
  * Auth register controller
  */
 const httpStatus = require('http-status');
+const User = require('../../../Models/user.model');
 
 /**
  * Handle new user registration request
@@ -9,7 +10,15 @@ const httpStatus = require('http-status');
  * @param res
  * @return JSON response
  */
-const register = (req, res) => {
+const register = async (req, res) => {
+
+  await User.create({
+    "uid": "qwerty1234",
+    "username": "Thictiveracy812",
+    "email": "email1@example.com",
+    "password": "password",
+  });
+
   res.status(httpStatus.CREATED).send(
     {
       "status": "success",

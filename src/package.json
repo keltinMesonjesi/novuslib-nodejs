@@ -15,7 +15,9 @@
     "seed:undo:all": "npx sequelize-cli db:seed:undo:all",
     "make:model": "npx sequelize-cli model:generate",
     "prettier": "prettier --check **/*.js",
-    "prettier:fix": "prettier --write **/*.js"
+    "prettier:fix": "prettier --write **/*.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "repository": {
     "type": "git",
@@ -45,6 +47,7 @@
     "xss-clean": "^0.1.1"
   },
   "devDependencies": {
+    "eslint": "^8.30.0",
     "prettier": "2.8.1"
   }
 }

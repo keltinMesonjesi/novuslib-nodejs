@@ -5,7 +5,6 @@ const httpStatus = require('http-status');
 const config = require('../../config/app');
 const { logging } = require('../../config/logging');
 const ApiException = require('./ApiException');
-const replace = require('lodash/replace');
 
 const errorConverter = (err, req, res, next) => {
   let error = err;
@@ -26,8 +25,6 @@ const errorHandler = (err, req, res, next) => {
   }
 
   res.locals.errorMessage = err.message;
-
-  const test = "\"username\" is required";
 
   const response = {
     status: 'failed',

@@ -25,22 +25,17 @@ const connectionParams = {
   host: envVars.DB_HOST,
   port: envVars.DB_PORT,
   dialect: envVars.DB_CONNECTION,
-  migrationStorageTableName: "sequelize_meta",
-  seederStorageTableName: "sequelize_data"
+  migrationStorageTableName: 'sequelize_meta',
+  seederStorageTableName: 'sequelize_data',
 };
 
 // New DB connection
-const dbConnection = new Sequelize(
-  connectionParams.database,
-  connectionParams.username,
-  connectionParams.password,
-  {
-    host: connectionParams.host,
-    port: connectionParams.port,
-    dialect: connectionParams.dialect,
-    logging: envVars.APP_DEBUG === 'true' ? msg => logging.debug(msg) : false,
-  }
-);
+const dbConnection = new Sequelize(connectionParams.database, connectionParams.username, connectionParams.password, {
+  host: connectionParams.host,
+  port: connectionParams.port,
+  dialect: connectionParams.dialect,
+  logging: envVars.APP_DEBUG === 'true' ? (msg) => logging.debug(msg) : false,
+});
 
 // Attempt DB connection
 const connectToDb = async () => {
@@ -51,14 +46,14 @@ const connectToDb = async () => {
     logging.error('Unable to connect to the database:', error);
     process.exit(1);
   }
-}
+};
 
 module.exports = {
-  development:{
-    ...connectionParams
+  development: {
+    ...connectionParams,
   },
   dbConnection,
   connectToDb,
   DataTypes,
-  Model
+  Model,
 };

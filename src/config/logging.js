@@ -13,7 +13,7 @@ const config = require('./app');
 
 morgan.token('time', () => {
   return moment().format('HH:mm:ss');
-})
+});
 morgan.token('message', (req, res) => JSON.stringify(res.locals.errorMessage) || '');
 
 const successResponseFormat = `:time => ":method :url :status - :response-time ms"`;
@@ -54,5 +54,5 @@ const errorHandler = morgan(errorResponseFormat, {
 module.exports = {
   logging,
   successHandler,
-  errorHandler
+  errorHandler,
 };

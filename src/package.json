@@ -13,7 +13,9 @@
     "seed:all": "npx sequelize-cli db:seed:all",
     "seed:undo": "npx sequelize-cli db:seed:undo",
     "seed:undo:all": "npx sequelize-cli db:seed:undo:all",
-    "make:model": "npx sequelize-cli model:generate"
+    "make:model": "npx sequelize-cli model:generate",
+    "prettier": "prettier --check **/*.js",
+    "prettier:fix": "prettier --write **/*.js"
   },
   "repository": {
     "type": "git",
@@ -41,5 +43,8 @@
     "sequelize-cli": "^6.5.2",
     "winston": "^3.8.2",
     "xss-clean": "^0.1.1"
+  },
+  "devDependencies": {
+    "prettier": "2.8.1"
   }
 }

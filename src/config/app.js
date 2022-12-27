@@ -21,5 +21,5 @@ module.exports = {
   debug: envVars.APP_DEBUG,
   port: envVars.APP_PORT,
   url: envVars.APP_URL,
-  apiVersion: envVars.API_VERSION
+  apiVersion: envVars.API_VERSION,
 };

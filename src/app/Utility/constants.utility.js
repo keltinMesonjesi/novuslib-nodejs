@@ -2,24 +2,24 @@ const requestTypes = {
   get: 'get',
   post: 'post',
   put: 'put',
-  patch: 'patch'
+  patch: 'patch',
 };
 
 const requestKeys = {
   body: 'body',
   params: 'params',
-  query: 'query'
+  query: 'query',
 };
 
 const requestTypeToKey = {
   get: 'query',
   post: 'body',
   put: 'params',
-  patch: 'params'
+  patch: 'params',
 };
 
 module.exports = {
   requestTypes,
   requestKeys,
-  requestTypeToKey
+  requestTypeToKey,
 };

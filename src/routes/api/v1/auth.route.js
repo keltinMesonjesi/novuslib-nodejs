@@ -4,7 +4,7 @@ const registerRequest = require('../../../app/Http/Requests/Auth/register.reques
 const { register } = require('../../../app/Http/Controllers/Auth/register.controller');
 
 const router = express.Router();
-router.get('/', (req, res, ) => res.send('This is an auth route'));
+router.get('/', (req, res) => res.send('This is an auth route'));
 router.post('/', [validate(registerRequest)], register);
 
 module.exports = router;

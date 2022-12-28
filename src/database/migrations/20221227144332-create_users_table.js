@@ -2,12 +2,12 @@
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  async up(queryInterface, Sequelize) {
     const transaction = await queryInterface.sequelize.transaction();
 
     try {
       await queryInterface.createTable(
-        "users",
+        'users',
         {
           id: {
             allowNull: false,
@@ -44,19 +44,17 @@ module.exports = {
           },
           created_at: {
             allowNull: false,
-            defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
-            type: "TIMESTAMP",
+            defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+            type: 'TIMESTAMP',
           },
           updated_at: {
             allowNull: true,
-            defaultValue: Sequelize.literal(
-              "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
-            ),
-            type: "TIMESTAMP",
+            defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
+            type: 'TIMESTAMP',
           },
           deleted_at: {
             allowNull: true,
-            type: "TIMESTAMP",
+            type: 'TIMESTAMP',
           },
         },
         { transaction }
@@ -68,11 +66,11 @@ module.exports = {
     }
   },
 
-  async down (queryInterface) {
+  async down(queryInterface) {
     const transaction = await queryInterface.sequelize.transaction();
 
     try {
-      await queryInterface.dropTable("users", { transaction });
+      await queryInterface.dropTable('users', { transaction });
     } catch (err) {
       await transaction.rollback();
       throw err;

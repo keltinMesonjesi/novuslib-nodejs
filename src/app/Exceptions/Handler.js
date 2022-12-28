@@ -9,8 +9,7 @@ const ApiException = require('./ApiException');
 const errorConverter = (err, req, res, next) => {
   let error = err;
   if (!(error instanceof ApiException)) {
-    const statusCode =
-      error.statusCode ? httpStatus.BAD_REQUEST : httpStatus.INTERNAL_SERVER_ERROR;
+    const statusCode = error.statusCode ? httpStatus.BAD_REQUEST : httpStatus.INTERNAL_SERVER_ERROR;
     const message = error.message || httpStatus[statusCode];
     error = new ApiException(statusCode, message, false, err.stack);
   }

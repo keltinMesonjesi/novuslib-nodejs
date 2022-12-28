@@ -1,7 +1,9 @@
 'use strict';
 const { DataTypes, dbConnection } = require('../../config/database');
 
-const User = dbConnection.define("user", {
+const User = dbConnection.define(
+  'user',
+  {
     id: {
       primaryKey: true,
       type: DataTypes.BIGINT.UNSIGNED,
@@ -33,13 +35,14 @@ const User = dbConnection.define("user", {
     deleted_at: {
       type: DataTypes.DATE,
     },
-},
+  },
   {
     paranoid: true,
-    createdAt: "created_at",
-    updatedAt: "updated_at",
-    deletedAt: "deleted_at",
-    tableName: "users",
-  });
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
+    deletedAt: 'deleted_at',
+    tableName: 'users',
+  }
+);
 
 module.exports = User;

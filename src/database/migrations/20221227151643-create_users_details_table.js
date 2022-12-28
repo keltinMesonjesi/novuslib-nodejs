@@ -2,12 +2,12 @@
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  async up(queryInterface, Sequelize) {
     const transaction = await queryInterface.sequelize.transaction();
 
     try {
       await queryInterface.createTable(
-        "users_details",
+        'users_details',
         {
           id: {
             allowNull: false,
@@ -33,32 +33,30 @@ module.exports = {
           },
           created_at: {
             allowNull: false,
-            defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
-            type: "TIMESTAMP",
+            defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+            type: 'TIMESTAMP',
           },
           updated_at: {
             allowNull: true,
-            defaultValue: Sequelize.literal(
-              "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
-            ),
-            type: "TIMESTAMP",
+            defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
+            type: 'TIMESTAMP',
           },
           deleted_at: {
             allowNull: true,
-            type: "TIMESTAMP",
+            type: 'TIMESTAMP',
           },
         },
         { transaction }
       );
-      await queryInterface.addConstraint("users_details", {
-        fields: ["user_id"],
-        type: "foreign key",
-        name: "users_details_user_id_fk",
+      await queryInterface.addConstraint('users_details', {
+        fields: ['user_id'],
+        type: 'foreign key',
+        name: 'users_details_user_id_fk',
         references: {
-          table: "users",
-          field: "id",
+          table: 'users',
+          field: 'id',
         },
-        onDelete: "cascade",
+        onDelete: 'cascade',
         transaction,
       });
       await transaction.commit();
@@ -68,11 +66,11 @@ module.exports = {
     }
   },
 
-  async down (queryInterface) {
+  async down(queryInterface) {
     const transaction = await queryInterface.sequelize.transaction();
 
     try {
-      await queryInterface.dropTable("users_details", { transaction });
+      await queryInterface.dropTable('users_details', { transaction });
     } catch (err) {
       await transaction.rollback();
       throw err;

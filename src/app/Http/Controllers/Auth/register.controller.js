@@ -3,7 +3,7 @@
  */
 const httpStatus = require('http-status');
 const { User } = require('../../../Providers/model.provider');
-const crypto = require("node:crypto");
+const crypto = require('node:crypto');
 const replace = require('lodash/replace');
 const toUpper = require('lodash/toUpper');
 
@@ -14,10 +14,9 @@ const toUpper = require('lodash/toUpper');
  * @return JSON response
  */
 const register = async (req, res) => {
-
   await User.create({
     uid: toUpper(replace(crypto.randomUUID(), /[-]+/g, '')),
-    ...req.body
+    ...req.body,
   });
 
   res.status(httpStatus.CREATED).send({

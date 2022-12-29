@@ -8,10 +8,9 @@ const { UserDetail } = require('../../../app/Providers/model.provider');
 
 const router = express.Router();
 router.get('/', async (req, res) => {
-
   const userDetail = await UserDetail.findOne({
     where: { id: 1 },
-    include: User
+    include: User,
   });
 
   res.send(userDetail);

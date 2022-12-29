@@ -28,11 +28,11 @@ const ATTRIBUTES = {
 const loadModel = baseModel(TABLE_NAME, MODEL_NAME, ATTRIBUTES);
 const loadAssociations = (models) => {
   models.User.hasOne(models.UserDetail, {
-    foreignKey: 'user_id'
+    foreignKey: 'user_id',
   });
 };
 
 module.exports = {
   loadModel,
-  loadAssociations
+  loadAssociations,
 };

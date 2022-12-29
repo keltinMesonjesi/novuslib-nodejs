@@ -70,7 +70,7 @@ module.exports = {
   },
   dbConnection,
   models: {
-    ...dbConnection.models
+    ...dbConnection.models,
   },
   connectToDb,
   DataTypes,

@@ -9,8 +9,8 @@ const ATTRIBUTES = {
     type: DataTypes.BIGINT.UNSIGNED,
     references: {
       model: 'users',
-      key: 'id'
-    }
+      key: 'id',
+    },
   },
   firstname: {
     type: DataTypes.STRING(50),
@@ -26,11 +26,11 @@ const ATTRIBUTES = {
 const loadModel = baseModel(TABLE_NAME, MODEL_NAME, ATTRIBUTES);
 const loadAssociations = (models) => {
   models.UserDetail.belongsTo(models.User, {
-    foreignKey: 'user_id'
+    foreignKey: 'user_id',
   });
 };
 
 module.exports = {
   loadModel,
-  loadAssociations
+  loadAssociations,
 };

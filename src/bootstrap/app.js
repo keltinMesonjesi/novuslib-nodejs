@@ -68,6 +68,6 @@ const init = () => {
     logging.logging.info(`App running on http://localhost:${appConfig.port}`); // log app running host info
     await connectToDb(); // attempt DB connection
   });
-}
+};
 
 module.exports = { init };

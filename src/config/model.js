@@ -10,11 +10,8 @@
  |
  */
 
-const models = [
-  'User',
-  'UserDetail'
-]
+const models = ['User', 'UserDetail'];
 
 module.exports = {
-  models
-}
+  models,
+};

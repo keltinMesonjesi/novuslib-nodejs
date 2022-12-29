@@ -2,7 +2,7 @@
  * This file is used to load models
  */
 
-const path = require("path");
+const path = require('path');
 const { dbConnection } = require('../../config/database');
 const { models: modelsNames } = require('../../config/model');
 
@@ -12,7 +12,7 @@ const { models: modelsNames } = require('../../config/model');
  */
 const loadModel = (model) => {
   return require(path.join(__dirname, '../Models', `${model}.Model`));
-}
+};
 
 /**
  * Define models
@@ -39,5 +39,5 @@ for (const modelDefiner of modelDefiners) {
 }
 
 module.exports = {
-  ...dbConnection.models
+  ...dbConnection.models,
 };

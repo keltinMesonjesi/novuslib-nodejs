@@ -44,5 +44,5 @@ const baseModel = (tableName, modelName, attributes) => {
 
 module.exports = {
   DataTypes,
-  baseModel
+  baseModel,
 };

@@ -21,6 +21,9 @@ const ATTRIBUTES = {
   phone_number: {
     type: DataTypes.STRING(40),
   },
+  address: {
+    type: DataTypes.STRING(255),
+  },
 };
 
 const loadModel = baseModel(TABLE_NAME, MODEL_NAME, ATTRIBUTES);

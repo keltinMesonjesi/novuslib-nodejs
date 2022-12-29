@@ -44,17 +44,15 @@ module.exports = {
           },
           created_at: {
             allowNull: false,
-            defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
-            type: 'TIMESTAMP',
+            type: Sequelize.DataTypes.DATE,
           },
           updated_at: {
-            allowNull: true,
-            defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
-            type: 'TIMESTAMP',
+            allowNull: false,
+            type: Sequelize.DataTypes.DATE,
           },
           deleted_at: {
             allowNull: true,
-            type: 'TIMESTAMP',
+            type: Sequelize.DataTypes.DATE,
           },
         },
         { transaction }

@@ -1,27 +1,37 @@
-/**
- * This file is used to load models
- */
+/*
+|--------------------------------------------------------------------------
+| Provides model services
+|--------------------------------------------------------------------------
+|
+| Here you will find basic model functionality provided to the app
+|
+*/
 
 const path = require('path');
 const { dbConnection } = require('../../config/database');
-const { models: modelsNames } = require('../../config/model');
+const { getFilesFromFolder } = require('../Utility/files.utility');
 
 /**
- * Load model from model folder
+ * Require model file
  * @param model String
  */
-const loadModel = (model) => {
-  return require(path.join(__dirname, '../Models', `${model}.Model`));
+const requireModel = (model) => {
+  return require(path.join(__dirname, '../Models', model));
 };
+
+/**
+ * Autoload model names
+ */
+const modelsNames = getFilesFromFolder('app/Models');
 
 /**
  * Define models
  * @type {*[]}
  */
-const modelDefiners = [];
+let modelDefiners = [];
 
 for (const modelName of modelsNames) {
-  modelDefiners.push(loadModel(modelName));
+  modelDefiners.push(requireModel(modelName));
 }
 
 /**
@@ -39,5 +49,5 @@ for (const modelDefiner of modelDefiners) {
 }
 
 module.exports = {
-  ...dbConnection.models,
+  models: dbConnection.models,
 };

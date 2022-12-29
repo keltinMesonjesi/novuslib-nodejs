@@ -1,4 +1,4 @@
-const { DataTypes, baseModel } = require('./Model');
+const { DataTypes, baseModel } = require('../Blueprints/Model');
 
 const TABLE_NAME = 'users';
 

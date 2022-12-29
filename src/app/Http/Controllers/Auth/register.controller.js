@@ -2,10 +2,8 @@
  * Auth register controller
  */
 const httpStatus = require('http-status');
-const { User } = require('../../../Providers/model.provider');
-const crypto = require('node:crypto');
-const replace = require('lodash/replace');
-const toUpper = require('lodash/toUpper');
+const { User } = require('../../../Models');
+const { generateUid } = require("../../../Utility/helper.utility");
 
 /**
  * Handle new user registration request
@@ -15,7 +13,7 @@ const toUpper = require('lodash/toUpper');
  */
 const register = async (req, res) => {
   await User.create({
-    uid: toUpper(replace(crypto.randomUUID(), /[-]+/g, '')),
+    uid: generateUid(),
     ...req.body,
   });
 

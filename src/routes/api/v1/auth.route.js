@@ -3,8 +3,8 @@ const { validate } = require('../../../app/Providers/validation.provider');
 const registerRequest = require('../../../app/Http/Requests/Auth/register.request');
 const { register } = require('../../../app/Http/Controllers/Auth/register.controller');
 
-const { User } = require('../../../app/Providers/model.provider');
-const { UserDetail } = require('../../../app/Providers/model.provider');
+const { UserDetail } = require('../../../app/Models');
+const { User } = require('../../../app/Models');
 
 const router = express.Router();
 router.get('/', async (req, res) => {

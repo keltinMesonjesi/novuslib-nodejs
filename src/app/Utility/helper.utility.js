@@ -4,9 +4,9 @@
 |--------------------------------------------------------------------------
 */
 
-const toUpper = require("lodash/toUpper");
-const replace = require("lodash/replace");
-const crypto = require("node:crypto");
+const toUpper = require('lodash/toUpper');
+const replace = require('lodash/replace');
+const crypto = require('node:crypto');
 
 /**
  * Generate UUID in uppercase and without dashes
@@ -14,8 +14,8 @@ const crypto = require("node:crypto");
  */
 const generateUid = () => {
   return toUpper(replace(crypto.randomUUID(), /[-]+/g, ''));
-}
+};
 
 module.exports = {
-  generateUid
-}
+  generateUid,
+};

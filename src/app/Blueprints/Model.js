@@ -14,6 +14,7 @@ const baseModel = (tableName, modelName, attributes) => {
       {
         id: {
           primaryKey: true,
+          autoIncrement: true,
           type: DataTypes.BIGINT.UNSIGNED,
         },
 

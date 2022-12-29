@@ -2,8 +2,7 @@
  * Auth register controller
  */
 const httpStatus = require('http-status');
-const { User } = require('../../../Models');
-const { generateUid } = require("../../../Utility/helper.utility");
+const { createUser } = require('../../../Services/user.service');
 
 /**
  * Handle new user registration request
@@ -12,10 +11,7 @@ const { generateUid } = require("../../../Utility/helper.utility");
  * @return JSON response
  */
 const register = async (req, res) => {
-  await User.create({
-    uid: generateUid(),
-    ...req.body,
-  });
+  await createUser(req.body);
 
   res.status(httpStatus.CREATED).send({
     status: 'success',

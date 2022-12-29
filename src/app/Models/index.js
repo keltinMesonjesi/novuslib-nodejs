@@ -11,5 +11,5 @@
 const { models } = require('../Providers/model.provider');
 
 module.exports = {
-  ...models
+  ...models,
 };

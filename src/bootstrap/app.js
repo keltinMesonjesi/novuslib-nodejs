@@ -62,10 +62,12 @@ app.use(errorConverter);
 // handle error
 app.use(errorHandler);
 
-// start app
-app.listen(appConfig.port, async () => {
-  logging.logging.info(`App running on http://localhost:${appConfig.port}`); // log app running host info
-  await connectToDb(); // attempt DB connection
-});
+// initialize app
+const init = () => {
+  app.listen(appConfig.port, async () => {
+    logging.logging.info(`App running on http://localhost:${appConfig.port}`); // log app running host info
+    await connectToDb(); // attempt DB connection
+  });
+}
 
-module.exports = app;
+module.exports = { init };

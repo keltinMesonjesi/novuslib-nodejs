@@ -3,4 +3,6 @@
 | Run The Application
 |--------------------------------------------------------------------------
 */
-require('./bootstrap/app');
+const { init } = require('./bootstrap/app');
+
+init();

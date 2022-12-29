@@ -2,8 +2,10 @@
  * Auth register controller
  */
 const httpStatus = require('http-status');
-const User = require('../../../Models/user.model');
-const { isUniqueInTable } = require('../../../Providers/validation.provider');
+const { User } = require('../../../Providers/model.provider');
+const crypto = require("node:crypto");
+const replace = require('lodash/replace');
+const toUpper = require('lodash/toUpper');
 
 /**
  * Handle new user registration request
@@ -12,11 +14,10 @@ const { isUniqueInTable } = require('../../../Providers/validation.provider');
  * @return JSON response
  */
 const register = async (req, res) => {
+
   await User.create({
-    uid: 'qwerty1234',
-    username: 'Thictiveracy812',
-    email: 'email1@example.com',
-    password: 'password',
+    uid: toUpper(replace(crypto.randomUUID(), /[-]+/g, '')),
+    ...req.body
   });
 
   res.status(httpStatus.CREATED).send({

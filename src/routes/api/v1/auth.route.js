@@ -3,8 +3,19 @@ const { validate } = require('../../../app/Providers/validation.provider');
 const registerRequest = require('../../../app/Http/Requests/Auth/register.request');
 const { register } = require('../../../app/Http/Controllers/Auth/register.controller');
 
+const { User } = require('../../../app/Providers/model.provider');
+const { UserDetail } = require('../../../app/Providers/model.provider');
+
 const router = express.Router();
-router.get('/', (req, res) => res.send('This is an auth route'));
+router.get('/', async (req, res) => {
+
+  const userDetail = await UserDetail.findOne({
+    where: { id: 1 },
+    include: User
+  });
+
+  res.send(userDetail);
+});
 router.post('/', [validate(registerRequest)], register);
 
 module.exports = router;

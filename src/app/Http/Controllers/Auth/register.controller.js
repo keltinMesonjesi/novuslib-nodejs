@@ -4,6 +4,7 @@
 const httpStatus = require('http-status');
 const { createUser } = require('../../../Services/user.service');
 const UserResource = require('../../Resources/User.Resource');
+const httpResponse = require('../../../Utility/httpResponse.utility');
 
 /**
  * Handle new user registration request
@@ -13,18 +14,16 @@ const UserResource = require('../../Resources/User.Resource');
  */
 const register = async (req, res) => {
   const user = await createUser(req.body);
-
-  res.status(httpStatus.CREATED).send({
-    status: 'success',
-    data: {
-      resource: {
-        ...(await UserResource(user)),
-      },
-      options: {
-        token: '2|bqzz47KigOzzgipw6YWITX7H8ElKeKrumMaEyIyV',
-      },
+  const data = {
+    resource: {
+      ...(await UserResource(user)),
     },
-  });
+    options: {
+      token: '2|bqzz47KigOzzgipw6YWITX7H8ElKeKrumMaEyIyV',
+    },
+  };
+
+  httpResponse(res, data, '', httpStatus.CREATED);
 };
 
 module.exports = {

@@ -13,12 +13,12 @@ const httpLogicAction = require('../../../Utility/httpLogicAction.utility');
  * @return JSON response
  */
 const register = async (req, res) => {
-  await httpLogicAction.executeActionWithDml(res, httpStatus.CREATED, async () => {
-    const user = await createUser(req.body);
+  await httpLogicAction.executeActionWithDml(res, httpStatus.CREATED, async (dbTransaction) => {
+    const user = await createUser(req.body, dbTransaction);
 
     return {
       resource: {
-        ...(await UserResource(user)),
+        ...(await UserResource(user, dbTransaction)),
       },
       options: {
         token: '2|bqzz47KigOzzgipw6YWITX7H8ElKeKrumMaEyIyV',

@@ -7,6 +7,7 @@
 const httpStatus = require('http-status');
 const isEmpty = require('lodash/isEmpty');
 const includes = require('lodash/includes');
+const assign = require('lodash/assign');
 
 const SUCCESS = 'success';
 
@@ -31,8 +32,12 @@ module.exports = (res, data = {}, message = '', responseStatusCodeAlt = null) =>
       : httpStatus.INTERNAL_SERVER_ERROR;
   let status = isEmpty(message) ? SUCCESS : FAILED;
 
-  return res.status(responseStatusCode).send({
-    status: status,
-    ...(includes(SUCCESS_STATUSES, responseStatusCode) ? data : message),
-  });
+  return res.status(responseStatusCode).send(
+    assign(
+      {
+        status: status,
+      },
+      includes(SUCCESS_STATUSES, responseStatusCode) ? { data } : { message }
+    )
+  );
 };

@@ -4,9 +4,10 @@
 |--------------------------------------------------------------------------
 */
 
+const assign = require('lodash/assign');
 const UserDetailResource = require('./UserDetail.Resource');
 
-module.exports = async (user) => {
+module.exports = async (user, dbTransaction = null) => {
   return {
     type: 'user',
     id: user.id,
@@ -14,7 +15,9 @@ module.exports = async (user) => {
     attributes: {
       username: user.username,
       email: user.email,
-      detail: UserDetailResource(await user.getUserDetail()),
+      detail: UserDetailResource(
+        await user.getUserDetail(assign({}, dbTransaction !== null ? { transaction: dbTransaction } : {}))
+      ),
     },
   };
 };

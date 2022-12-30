@@ -4,7 +4,7 @@
 const httpStatus = require('http-status');
 const { createUser } = require('../../../Services/user.service');
 const UserResource = require('../../Resources/User.Resource');
-const httpResponse = require('../../../Utility/httpResponse.utility');
+const httpLogicAction = require('../../../Utility/httpLogicAction.utility');
 
 /**
  * Handle new user registration request
@@ -13,17 +13,18 @@ const httpResponse = require('../../../Utility/httpResponse.utility');
  * @return JSON response
  */
 const register = async (req, res) => {
-  const user = await createUser(req.body);
-  const data = {
-    resource: {
-      ...(await UserResource(user)),
-    },
-    options: {
-      token: '2|bqzz47KigOzzgipw6YWITX7H8ElKeKrumMaEyIyV',
-    },
-  };
+  await httpLogicAction.executeActionWithDml(res, httpStatus.CREATED, async () => {
+    const user = await createUser(req.body);
 
-  httpResponse(res, data, '', httpStatus.CREATED);
+    return {
+      resource: {
+        ...(await UserResource(user)),
+      },
+      options: {
+        token: '2|bqzz47KigOzzgipw6YWITX7H8ElKeKrumMaEyIyV',
+      },
+    };
+  });
 };
 
 module.exports = {

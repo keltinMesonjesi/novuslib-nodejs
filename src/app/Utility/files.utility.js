@@ -26,8 +26,8 @@ const getFilesFromFolder = (directory) => {
     filesList = fs.readdirSync(path.join(BASE_PATH, directory));
   } catch (err) {
     if (debug === 'true') {
-      throw new ApiException(httpStatus.INTERNAL_SERVER_ERROR, 'Unable to load files from directory: ' + err);
       logging.error('Unable to load files from directory: ' + err);
+      throw new ApiException(httpStatus.INTERNAL_SERVER_ERROR, 'Unable to load files from directory: ' + err);
     } else {
       throw new ApiException(httpStatus.INTERNAL_SERVER_ERROR, httpStatus[httpStatus.INTERNAL_SERVER_ERROR]);
     }

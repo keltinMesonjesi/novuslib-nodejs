@@ -5,9 +5,10 @@ const { DataTypes } = require('../../config/database');
  * @param tableName String
  * @param modelName String
  * @param attributes Object
+ * @param hasSoftDelete Boolean
  * @returns {modelInstance}
  */
-const baseModel = (tableName, modelName, attributes) => {
+const baseModel = (tableName, modelName, attributes, hasSoftDelete = true) => {
   const modelInstance = (dbConnection) => {
     dbConnection.define(
       modelName,
@@ -29,12 +30,13 @@ const baseModel = (tableName, modelName, attributes) => {
         deleted_at: {
           type: DataTypes.DATE,
         },
+        ...(hasSoftDelete && {deleted_at: { type: DataTypes.DATE }})
       },
       {
-        paranoid: true,
+        paranoid: hasSoftDelete,
         createdAt: 'created_at',
         updatedAt: 'updated_at',
-        deletedAt: 'deleted_at',
+        ...(hasSoftDelete && { deletedAt: 'deleted_at' }),
         tableName: tableName,
       }
     );

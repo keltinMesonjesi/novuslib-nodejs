@@ -7,13 +7,7 @@
 |
 */
 
-const bcrypt = require('bcryptjs');
-
-/**
- * Default salt rounds configuration
- * @type {number}
- */
-const SALT_ROUNDS = 10;
+const { bcrypt, rounds } = require('../../config/hashing');
 
 /**
  * Password encryption function
@@ -21,7 +15,7 @@ const SALT_ROUNDS = 10;
  * @returns {*}
  */
 const encryptPassword = (plainPassword) => {
-  const salt = bcrypt.genSaltSync(SALT_ROUNDS);
+  const salt = bcrypt.genSaltSync(rounds);
   return bcrypt.hashSync(plainPassword, salt);
 };
 

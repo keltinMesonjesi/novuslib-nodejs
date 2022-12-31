@@ -3,6 +3,7 @@
  */
 const httpStatus = require('http-status');
 const { createUser } = require('../../../Services/user.service');
+const { generateAuthTokens } = require('../../../Providers/auth.provider');
 const UserResource = require('../../Resources/User.Resource');
 const httpLogicAction = require('../../../Utility/httpLogicAction.utility');
 
@@ -21,7 +22,7 @@ const register = async (req, res) => {
         ...(await UserResource(user, dbTransaction)),
       },
       options: {
-        token: '2|bqzz47KigOzzgipw6YWITX7H8ElKeKrumMaEyIyV',
+        ...(await generateAuthTokens(user, dbTransaction))
       },
     };
   });

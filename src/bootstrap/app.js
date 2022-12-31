@@ -16,6 +16,7 @@ const cors = require('cors');
 const httpStatus = require('http-status');
 const appConfig = require('../config/app');
 const { connectToDb } = require('../config/database');
+const { auth, jwtStrategy } = require('../config/auth');
 const logging = require('../config/logging');
 const { errorConverter, errorHandler } = require('../app/Exceptions/Handler');
 const ApiException = require('../app/Exceptions/ApiException');
@@ -47,6 +48,10 @@ app.use(compression());
 // enable cors
 app.use(cors());
 app.options('*', cors());
+
+// init authentication package
+app.use(auth.initialize());
+auth.use('jwt', jwtStrategy);
 
 // routes
 app.use('/', routes);

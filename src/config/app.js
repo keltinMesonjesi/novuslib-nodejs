@@ -15,6 +15,7 @@ dotenv.config({ path: path.join(__dirname, '../.env') });
 const envVars = process.env;
 
 module.exports = {
+  envVars,
   name: envVars.APP_NAME,
   env: envVars.APP_ENV,
   key: envVars.APP_KEY,

@@ -29,7 +29,7 @@ const executeActionWithDml = async (res, customResponseStatusCode, actionLogic) 
       return httpResponse(res, {}, e.message, e.statusCode);
     } else {
       await dbTransaction.rollback();
-      return httpResponse(res, {}, httpStatus[httpStatus.INTERNAL_SERVER_ERROR]);
+      return httpResponse(res, {}, 'An error has occurred');
     }
   }
 };

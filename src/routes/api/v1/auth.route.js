@@ -9,12 +9,12 @@ const { User } = require('../../../app/Models');
 const router = express.Router();
 router.get('/', async (req, res) => {
   const userDetail = await UserDetail.findOne({
-    where: { id: 1 },
+    where: { id: 2 },
     include: User,
   });
 
   res.send(userDetail);
 });
-router.post('/', [validate(registerRequest)], register);
+router.post('/register', [validate(registerRequest)], register);
 
 module.exports = router;

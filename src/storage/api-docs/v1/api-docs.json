@@ -1,0 +1,239 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "NovusLib API",
+    "description": "NovusLib OpenApi description",
+    "contact": {
+      "email": "keltin.mesonjesi@protonmail.ch"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    },
+    "version": "1.0.0",
+    "x-logo": {
+      "url": "https://via.placeholder.com/190x90.png?text=L5-Swagger"
+    }
+  },
+  "paths": {
+    "/api/v1/auth/register": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Register new user",
+        "operationId": "register",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#components/schemas/RegisterRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#components/schemas/RegisterResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#components/schemas/InternalErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "RegisterRequest": {
+        "type": "object",
+        "required": [
+          "username",
+          "email",
+          "password",
+          "password_confirmation",
+          "firstname",
+          "lastname",
+          "phone_number",
+          "address"
+        ],
+        "properties": {
+          "username": {
+            "type": "string",
+            "example": "Thictiveracy81",
+            "minLength": 6
+          },
+          "email": {
+            "type": "string",
+            "example": "email@example.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "password",
+            "minLength": 8
+          },
+          "password_confirmation": {
+            "type": "string",
+            "example": "password",
+            "description": "Must be same as password field"
+          },
+          "firstname": {
+            "type": "string",
+            "example": "Max"
+          },
+          "lastname": {
+            "type": "string",
+            "example": "Powers"
+          },
+          "phone_number": {
+            "type": "string",
+            "example": "567-227-9504"
+          },
+          "address": {
+            "type": "string",
+            "example": "424 N PALM DR BEVERLY HILLS CA 90210-3965 USA"
+          }
+        }
+      },
+      "RegisterResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "success"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "resource": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "user"
+                  },
+                  "id": {
+                    "type": "string",
+                    "example": "eyJpdiI6IjNKNlEyZWFLdmhsM0tuQ29wVW9Pd3c9PSIsInZhbHVlIjoieldJbGFBbk0xeS9PRUNBeU5oUnFlQT09IiwibWFjIjoiMjYwNTc3NzVhNzAyZjZkNTA2YjgzZWZhMjg0YTE4ZDQ0NWMwNDllMDU3N2JiMWY4MDIwZTEyZDllMjYxZDNmNSIsInRhZyI6IiJ9"
+                  },
+                  "uid": {
+                    "type": "string",
+                    "example": "9ACB7973E1474EF09F063E359E531A9D"
+                  },
+                  "attributes": {
+                    "type": "object",
+                    "properties": {
+                      "username": {
+                        "type": "string",
+                        "example": "Thictiveracy81"
+                      },
+                      "email": {
+                        "type": "string",
+                        "example": "email@example.com"
+                      },
+                      "detail": {
+                        "type": "object",
+                        "properties": {
+                          "firstname": {
+                            "type": "string",
+                            "example": "Max"
+                          },
+                          "lastname": {
+                            "type": "string",
+                            "example": "Powers"
+                          },
+                          "phone_number": {
+                            "type": "string",
+                            "example": "567-227-9504"
+                          },
+                          "address": {
+                            "type": "string",
+                            "example": "424 N PALM DR BEVERLY HILLS CA 90210-3965 USA"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "options": {
+                "type": "object",
+                "properties": {
+                  "token": {
+                    "type": "object",
+                    "properties": {
+                      "access": {
+                        "type": "string",
+                        "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImlhdCI6MTY3MjY3MzI0NSwiZXhwIjoxNjcyNjc1MDQ1LCJ0eXBlIjoiYWNjZXNzIn0.b8qAIuld-r4VSI0BM7xw6a9jJISen-BR3BP_Vltfmmo"
+                      },
+                      "refresh": {
+                        "type": "string",
+                        "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTY3MjUyNjc2NiwiZXhwIjoxNjc1MTE4NzY2LCJ0eXBlIjoicmVmcmVzaCJ9.DQrdqG9O-6tKNkp11lOX4b5v_MAlnxP9WiWrRyqgNdU"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "ValidationErrorResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "failed"
+          },
+          "message": {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "array",
+                "example": ["Validation error description"]
+              }
+            }
+          }
+        }
+      },
+      "InternalErrorResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "failed"
+          },
+          "message": {
+            "type": "string",
+            "example": "An error has ocurred"
+          }
+        }
+      }
+    }
+  }
+}

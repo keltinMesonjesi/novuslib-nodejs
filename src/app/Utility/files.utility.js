@@ -29,7 +29,7 @@ const getFilesFromFolder = (directory) => {
       logging.error('Unable to load files from directory: ' + err);
       throw new ApiException(httpStatus.INTERNAL_SERVER_ERROR, 'Unable to load files from directory: ' + err);
     } else {
-      throw new ApiException(httpStatus.INTERNAL_SERVER_ERROR, httpStatus[httpStatus.INTERNAL_SERVER_ERROR]);
+      throw new ApiException(httpStatus.INTERNAL_SERVER_ERROR, 'An error has occurred');
     }
   }
 

@@ -28,7 +28,7 @@ const ATTRIBUTES = {
 
 const loadModel = baseModel(TABLE_NAME, MODEL_NAME, ATTRIBUTES);
 const loadAssociations = (models) => {
-  models.UserDetail.belongsTo(models.User, {
+  models[MODEL_NAME].belongsTo(models.User, {
     foreignKey: 'user_id',
   });
 };

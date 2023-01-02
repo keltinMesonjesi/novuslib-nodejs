@@ -20,7 +20,7 @@ const errorHandler = (err, req, res, next) => {
   let { statusCode, message } = err;
   if (config.debug === 'false') {
     statusCode = httpStatus.INTERNAL_SERVER_ERROR;
-    message = httpStatus[httpStatus.INTERNAL_SERVER_ERROR];
+    message = 'An error has occurred';
   }
 
   res.locals.errorMessage = err.message;

@@ -28,7 +28,7 @@ const ATTRIBUTES = {
 
 const loadModel = baseModel(TABLE_NAME, MODEL_NAME, ATTRIBUTES, false);
 const loadAssociations = (models) => {
-  models.Token.hasOne(models.User, {
+  models[MODEL_NAME].belongsTo(models.User, {
     foreignKey: 'user_id',
   });
 };

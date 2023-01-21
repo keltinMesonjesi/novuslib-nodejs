@@ -8,11 +8,19 @@
 */
 const dotenv = require('dotenv');
 const path = require('path');
+const { generateAppKey } = require('../app/Providers/encryption.provider');
 
 // Load env variables from .env file
 dotenv.config({ path: path.join(__dirname, '../.env') });
 
-const envVars = process.env;
+let envVars = process.env;
+
+// Generate app key if not present
+if (envVars.APP_KEY === '') {
+  const appKey = generateAppKey();
+  process.env.APP_KEY = appKey;
+  envVars.APP_KEY = appKey;
+}
 
 module.exports = {
   envVars,

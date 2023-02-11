@@ -8,7 +8,7 @@
 */
 const dotenv = require('dotenv');
 const path = require('path');
-const { generateAppKey } = require('../app/Providers/encryption.provider');
+const { generateAppKey } = require('../app/Providers/app.provider');
 
 // Load env variables from .env file
 dotenv.config({ path: path.join(__dirname, '../.env') });

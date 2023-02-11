@@ -42,21 +42,24 @@ const generateAuthTokens = async (user, dbTransaction) => {
 
   const refreshTokenExpires = moment().add(tokensExpiry.refresh, 'days');
   const refreshToken = generateToken(user.id, refreshTokenExpires, tokenTypes.REFRESH);
-  await createToken({
-    token: refreshToken,
-    user_id: user.id,
-    expires: refreshTokenExpires,
-    type: tokenTypes.REFRESH
-  }, dbTransaction);
+  await createToken(
+    {
+      token: refreshToken,
+      user_id: user.id,
+      expires: refreshTokenExpires,
+      type: tokenTypes.REFRESH,
+    },
+    dbTransaction
+  );
 
   return {
     token: {
       access: accessToken,
-      refresh: refreshToken
-    }
+      refresh: refreshToken,
+    },
   };
 };
 
 module.exports = {
-  generateAuthTokens
-}
+  generateAuthTokens,
+};

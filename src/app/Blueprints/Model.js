@@ -30,7 +30,7 @@ const baseModel = (tableName, modelName, attributes, hasSoftDelete = true) => {
         deleted_at: {
           type: DataTypes.DATE,
         },
-        ...(hasSoftDelete && {deleted_at: { type: DataTypes.DATE }})
+        ...(hasSoftDelete && { deleted_at: { type: DataTypes.DATE } }),
       },
       {
         paranoid: hasSoftDelete,

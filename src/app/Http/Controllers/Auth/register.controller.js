@@ -22,7 +22,7 @@ const register = async (req, res) => {
         ...(await UserResource(user, dbTransaction)),
       },
       options: {
-        ...(await generateAuthTokens(user, dbTransaction))
+        ...(await generateAuthTokens(user, dbTransaction)),
       },
     };
   });

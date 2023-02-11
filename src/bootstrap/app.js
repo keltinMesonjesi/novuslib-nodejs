@@ -75,4 +75,4 @@ const init = () => {
   });
 };
 
-module.exports = { init };
+module.exports = { app, init };

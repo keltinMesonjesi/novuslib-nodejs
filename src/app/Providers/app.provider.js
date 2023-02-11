@@ -11,7 +11,6 @@ const { bcrypt, rounds } = require('../../config/hashing');
 const { createId } = require('@paralleldrive/cuid2');
 const fs = require('fs');
 
-
 /**
  * Generates application key for encryption and write to .env file
  * @returns String

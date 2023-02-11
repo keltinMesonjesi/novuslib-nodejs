@@ -1,4 +1,4 @@
-const nodemailer = require("nodemailer");
+const nodemailer = require('nodemailer');
 const pug = require('pug');
 const { debug } = require('../../config/app');
 const mailConfig = require('../../config/mail');
@@ -21,12 +21,15 @@ if (debug === 'true') {
  * @type {{smtp: (function(*, *, *, {}=): Promise<any>)}}
  */
 const mailerFunctions = {
-  smtp: (to, subject, template, variables = {}) => transporter.sendMail({
-          from: `${mailConfig.from.name} <${mailConfig.from.address}>`, // sender address
-          to, // list of receivers
-          subject, // Subject line
-          html: pug.renderFile(`${mailConfig.templateFolderPath}/${template}.email.pug`, variables), // html body
-        }).catch((err) => logging.error(err)),
+  smtp: (to, subject, template, variables = {}) =>
+    transporter
+      .sendMail({
+        from: `${mailConfig.from.name} <${mailConfig.from.address}>`, // sender address
+        to, // list of receivers
+        subject, // Subject line
+        html: pug.renderFile(`${mailConfig.templateFolderPath}/${template}.email.pug`, variables), // html body
+      })
+      .catch((err) => logging.error(err)),
 };
 
 /**
@@ -36,7 +39,7 @@ const mailerFunctions = {
  * @param template String
  * @param variables Object
  */
-const sendEmail =  (to, subject, template, variables = {}) => {
+const sendEmail = (to, subject, template, variables = {}) => {
   mailerFunctions[mailConfig.default](to, subject, template, variables);
 };
 
@@ -53,5 +56,5 @@ const sendEmail =  (to, subject, template, variables = {}) => {
 );*/
 
 module.exports = {
-  sendEmail
-}
+  sendEmail,
+};

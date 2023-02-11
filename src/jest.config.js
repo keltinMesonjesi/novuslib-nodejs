@@ -1,0 +1,27 @@
+module.exports = {
+  testEnvironment: 'node',
+  testEnvironmentOptions: {
+    APP_ENV: 'test',
+  },
+  restoreMocks: true,
+  coveragePathIgnorePatterns: [
+    'node_modules',
+    'config',
+    'database',
+    'storage',
+    'lang',
+    'routes',
+    'bootstrap',
+    'resources',
+    'tests',
+    'app/Blueprints',
+    'app/Exceptions',
+    'app/Providers',
+    'app/Models',
+    'app/Utility',
+    'app/Queries',
+    'app/Http/Requests',
+    'app/Http/Resources',
+  ],
+  coverageReporters: ['text', 'lcov', 'clover', 'html'],
+};

@@ -5,6 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
+    "test": "jest -i --colors --verbose --detectOpenHandles",
+    "coverage": "jest -i --coverage",
+    "coverage:coveralls": "jest -i --coverage --coverageReporters=text-lcov | coveralls",
     "make:migration": "npx sequelize-cli migration:generate",
     "make:seed": "npx sequelize-cli seed:generate",
     "migrate:up": "npx sequelize-cli db:migrate",

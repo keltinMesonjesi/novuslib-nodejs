@@ -16,5 +16,5 @@ const getUserById = async (id) => {
 };
 
 module.exports = {
-  getUserById
-}
+  getUserById,
+};

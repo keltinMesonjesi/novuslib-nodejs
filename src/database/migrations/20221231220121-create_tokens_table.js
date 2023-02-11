@@ -1,6 +1,6 @@
 'use strict';
 
-const { DataTypes } = require("../../app/Blueprints/Model");
+const { DataTypes } = require('../../app/Blueprints/Model');
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
